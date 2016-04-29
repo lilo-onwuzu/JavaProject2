@@ -5,4 +5,8 @@ private String mName; //this is an attribute/property/instance variable of the W
     mName = wordName; //this is a constructor of the Word Class. If the constructor is not defined, the compiler definies one automatically assuming that no arguments are needed. In this case, an argument of the word name is needed to define to construct.
   }
 
+  public String getWordName(){
+    return null;
+  }
+
 }
