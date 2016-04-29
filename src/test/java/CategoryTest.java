@@ -6,7 +6,7 @@ public class CategoryTest{
   @Test
   public void Category_instantiatesCorrectly_true(){
     Category testCategory = new Category();
-    assertEquals(false, testCategory instanceof Category);
+    assertEquals(true, testCategory instanceof Category);
   }
 
 }
