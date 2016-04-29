@@ -6,6 +6,6 @@ public class DefinitionTest{
   @Test
   public void Definition_instantiatesCorrectly_true(){
     Definition newDefinition = new Definition();
-    assertEquals(false, newDefinition instanceof Definition);
+    assertEquals(true, newDefinition instanceof Definition);
   }
 }
