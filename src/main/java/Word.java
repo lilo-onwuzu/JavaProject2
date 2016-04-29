@@ -6,7 +6,7 @@ private String mName; //this is an attribute/property/instance variable of the W
   }
 
   public String getWordName(){
-    return null;
+    return mName;
   }
 
 }
