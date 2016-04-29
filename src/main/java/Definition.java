@@ -14,7 +14,7 @@ public class Definition {
   }
 
   public ArrayList<Definition> addAll(){
-    return null;
+    return definitionInstance;
   }
 
 }
