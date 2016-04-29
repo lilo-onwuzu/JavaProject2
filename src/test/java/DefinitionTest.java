@@ -5,14 +5,20 @@ public class DefinitionTest{
 
   @Test
   public void Definition_instantiatesCorrectly_true(){
-    Definition newDefinition = new Definition("");
-    assertEquals(true, newDefinition instanceof Definition);
+    Definition testDefinition = new Definition("");
+    assertEquals(true, testDefinition instanceof Definition);
   }
 
   @Test
   public void Definition_instantiatedwithString_String(){
-    Definition newDefinition = new Definition("this word is good");
-    assertEquals("this word is good", newDefinition.addDefinition());
+    Definition testDefinition = new Definition("this word is good");
+    assertEquals("this word is good", testDefinition.addDefinition());
+  }
+
+  @Test
+  public void Definition_OneDefinitionAddedToList_ArrayList(){
+    Definition testDefinition = new Definition("this word is good");
+    assertTrue(testDefinition.addAll().contains(testDefinition));
   }
 
 }

@@ -13,4 +13,8 @@ public class Definition {
     return mDefine;
   }
 
+  public ArrayList<Definition> addAll(){
+    return null;
+  }
+
 }
