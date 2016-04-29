@@ -1,5 +1,6 @@
 import org.junit.*;
 import static org.junit.Assert.*;
+import java.util.ArrayList;
 
 public class DefinitionTest{
 
@@ -18,7 +19,14 @@ public class DefinitionTest{
   @Test
   public void Definition_OneDefinitionAddedToList_ArrayList(){
     Definition testDefinition = new Definition("this word is good");
-    assertTrue(testDefinition.addAll().contains(testDefinition));
+    assertTrue(Definition.addAll().contains(testDefinition));
   }
 
+  @Test
+  public void Definition_MultipleDefinitionsAddedToList_ArrayList(){
+    Definition testDefinition = new Definition("this word is good");
+    Definition testDefinition2 = new Definition("this word is really good");
+    assertTrue(Definition.addAll().contains(testDefinition));
+    assertTrue(Definition.addAll().contains(testDefinition2));
+  }
 }
