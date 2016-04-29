@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<testsuite name="CategoryTest" tests="2" skipped="0" failures="0" errors="0" timestamp="2016-04-29T21:05:24" hostname="epicodus-36.local" time="0.001">
+<testsuite name="CategoryTest" tests="2" skipped="0" failures="0" errors="0" timestamp="2016-04-29T21:36:45" hostname="epicodus-36.local" time="0.001">
   <properties/>
   <testcase name="Category_instantiatesCorrectly_true" classname="CategoryTest" time="0.001"/>
   <testcase name="Category_instantiatesWithName_true" classname="CategoryTest" time="0.0"/>
