@@ -8,4 +8,6 @@ public class DefinitionTest{
     Definition newDefinition = new Definition();
     assertEquals(true, newDefinition instanceof Definition);
   }
+
+
 }
