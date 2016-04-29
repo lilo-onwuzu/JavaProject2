@@ -10,7 +10,7 @@ public class Definition {
   }
 
   public String addDefinition(){
-    return null;
+    return mDefine;
   }
 
 }
