@@ -9,7 +9,7 @@ public class Word {
   // arraylist to add the full list of word objects. Only one list of words objects so it can be static
   private static ArrayList<Word> wordInstances = new ArrayList<Word>();
   //arraylist to add one list of definitions per word. Should NOT be static
-  private ArrayList<Definition> mDefinitions = new ArrayList<Definition>();
+  private ArrayList<Definition> mDefinitions;
 
   // this is a constructor of the Word Class. If the constructor is not defined, the compiler definies one automatically assuming that no arguments are needed. In this case, an argument of the word name is needed to define to construct.
   public Word(String wordName){
@@ -17,7 +17,7 @@ public class Word {
     // everytime a word instance object is created with a word name, add that instance object itself to the full list of word objects
     wordInstances.add(this);
     // create an an arraylist of definition objects
-    mDefinitions;
+    mDefinitions = new ArrayList<Definition>();
   }
 
   public String getWordName(){
