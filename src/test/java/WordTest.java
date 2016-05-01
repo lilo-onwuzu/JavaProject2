@@ -29,9 +29,12 @@ public class WordTest{
     assertTrue(testWord2.allWords().contains(testWord));
     assertTrue(testWord2.allWords().contains(testWord2));
   }
-  //
-  // @Test
-  // public void addDefinition_canAddOneDefinitionForOneWord_String(){
-  //   Word testWord = new Word("");
-  // }
+
+  @Test
+  public void addDefinition_canAddOneDefinitionForOneWord_String(){
+    Word testWord = new Word("word");
+    Definition testDefinition = new Definition("this word is good");
+    testWord.addDefinition(testDefinition);
+    assertTrue(testWord.addDefinition().contains(testDefinition));
+  }
 }
