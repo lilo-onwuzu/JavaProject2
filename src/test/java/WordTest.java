@@ -26,6 +26,12 @@ public class WordTest{
   public void allWords_canAddMultipleWords_String(){
     Word testWord = new Word("");
     Word testWord2 = new Word("");
-    assertTrue(testWord.allWords().contains(testWord));
+    assertTrue(testWord2.allWords().contains(testWord));
+    assertTrue(testWord2.allWords().contains(testWord2));
   }
+  //
+  // @Test
+  // public void addDefinition_canAddOneDefinitionForOneWord_String(){
+  //   Word testWord = new Word("");
+  // }
 }
