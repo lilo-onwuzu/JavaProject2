@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<testsuite name="DefinitionTest" tests="2" skipped="0" failures="0" errors="0" timestamp="2016-05-01T05:06:22" hostname="epicodus-30.local" time="0.001">
+<testsuite name="DefinitionTest" tests="2" skipped="0" failures="0" errors="0" timestamp="2016-05-01T05:07:49" hostname="epicodus-30.local" time="0.001">
   <properties/>
   <testcase name="Definition_instantiatesCorrectly_true" classname="DefinitionTest" time="0.001"/>
   <testcase name="Definition_instantiatedwithString_String" classname="DefinitionTest" time="0.0"/>
