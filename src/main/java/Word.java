@@ -2,18 +2,22 @@ import java.util.ArrayList;
 import java.time.LocalDateTime;
 
 public class Word {
-  private String mName; // this is an attribute/property/instance variable of the Word Class. this global scope instance variable is of reference type and so gets initialized as null. Global scope variables of primitive type gets initialized as '0'. Local scope variables do not get automativally instantiated and will cause compiler error if not initiatlized.
-  private int wordId; // id to keep track to number of words
-  // arraylist to add the full list of words
+  // this is an attribute/property/instance variable of the Word Class. this global scope instance variable is of reference type and so gets initialized as null. Global scope variables of primitive type gets initialized as '0'. Local scope variables do not get automativally instantiated and will cause compiler error if not initiatlized.
+  private String mName;
+   // id to keep track to number of words
+   private int wordId;
+  // arraylist to add the full list of word objects. Only one list of words objects so it can be static
   private static ArrayList<Word> wordInstances = new ArrayList<Word>();
-  private ArrayList<Definition> mDefinitions;
+  //arraylist to add one list of definitions per word. Should NOT be static
+  private ArrayList<Definition> mDefinitions = new ArrayList<Definition>();
 
   // this is a constructor of the Word Class. If the constructor is not defined, the compiler definies one automatically assuming that no arguments are needed. In this case, an argument of the word name is needed to define to construct.
   public Word(String wordName){
     mName = wordName;
-    // everytime a word instance object is created with a word name, add that instance object to the full list of word objects
+    // everytime a word instance object is created with a word name, add that instance object itself to the full list of word objects
     wordInstances.add(this);
-    mDefinitions = new ArrayList<Definition>();
+    // create an an arraylist of definition objects
+    mDefinitions;
   }
 
   public String getWordName(){
