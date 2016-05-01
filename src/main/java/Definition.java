@@ -2,19 +2,18 @@ import java.util.ArrayList;
 
 public class Definition {
   private String mDefine;
-  private static ArrayList<Definition> defInstances = new ArrayList<Definition>();
+    // create an array list to store many definitions within one category
 
+  // definition construct
   public Definition(String define){
     mDefine = define;
-    defInstances.add(this); // whenever a definition class instance is created, add it to an arraylist
+    // add this defintion created to a category but this is not requ9ired to create a definition since it is not in the argument list
   }
 
-  public String addDefinition(){
+  // method to add a string for definition
+  public String getDefinition(){
     return mDefine;
   }
 
-  public static ArrayList<Definition> addAll(){
-    return defInstances;
-  }
 
 }

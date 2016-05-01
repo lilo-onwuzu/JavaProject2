@@ -1,5 +1,6 @@
 import org.junit.*;
 import static org.junit.Assert.*;
+import java.util.ArrayList;
 
 public class WordTest{
 
@@ -15,4 +16,16 @@ public class WordTest{
     assertEquals("word", testWord.getWordName());
   }
 
+  @Test
+  public void allWords_canAddOneWord_String(){
+    Word testWord = new Word("word");
+    assertTrue(testWord.allWords().contains(testWord));
+  }
+
+  @Test
+  public void allWords_canAddMultipleWords_String(){
+    Word testWord = new Word("");
+    Word testWord2 = new Word("");
+    assertTrue(testWord.allWords().contains(testWord));
+  }
 }

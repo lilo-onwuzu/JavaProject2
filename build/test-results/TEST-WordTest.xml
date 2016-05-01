@@ -1,7 +1,9 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<testsuite name="WordTest" tests="2" skipped="0" failures="0" errors="0" timestamp="2016-04-29T22:02:53" hostname="epicodus-36.local" time="0.062">
+<testsuite name="WordTest" tests="4" skipped="0" failures="0" errors="0" timestamp="2016-05-01T04:23:08" hostname="epicodus-30.local" time="0.001">
   <properties/>
-  <testcase name="Word_instantiatesCorrectly_true" classname="WordTest" time="0.062"/>
+  <testcase name="allWords_canAddMultipleWords_String" classname="WordTest" time="0.0"/>
+  <testcase name="Word_instantiatesCorrectly_true" classname="WordTest" time="0.0"/>
+  <testcase name="allWords_canAddOneWord_String" classname="WordTest" time="0.0"/>
   <testcase name="Word_instantiatesWithName_String" classname="WordTest" time="0.0"/>
   <system-out><![CDATA[]]></system-out>
   <system-err><![CDATA[]]></system-err>
