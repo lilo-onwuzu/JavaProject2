@@ -13,7 +13,8 @@ Word Class Instantiates/
 Word Instantiates with Name/
 One word can be added to wordArray/
 Multiple words can be added to wordArray/
-Test that a definition is a method of the word class
+Test that a definition is a method of a word class/
+Test that multiple definitions can be added to a word object
 Test that the date of word creation can be accessed
 Test that user can click to view word definition
 Test that user can click to see multiple word definitions
