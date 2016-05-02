@@ -2,10 +2,6 @@ BDD TEST SPECIFICATIONS
 Definition Class Unit Tests:
 Definition Class can be instantiated/
 Definition Class can be Instantiated with String/
-Category is a method of the definition class
-One Definition can be added to a category
-Multiple Definitions can be added to a category
-One Definition can be added to multiple categories
 Test that the date of word definition creation can be accessed
 Clear method empties all definitions
 
@@ -22,16 +18,10 @@ Test that user can click to see multiple word definitions
 Test that homepage displays full list of words
 Clear method empties all words
 
-Category Class Unit Tests:
-Test that Category Class Instantiates/
-Test that Category Class Instantiates with Name/
-Multiple definitions can be added to a category ArrayList
-Test that a definition can be added to a category
-Test that multiple definitions can be added to a category
-Test that multiple words have definitions in a category
-Clear method empties all categories
-
 Integration Tests:
+Home page UI works/
+User's name is collected and customized home page works/
+User's name posts correctly to the session/
 Test that a word can be created
 Test that multiple word can be created
 Test that multiple word can be viewed
