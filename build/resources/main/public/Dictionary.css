@@ -1,0 +1,24 @@
+.jumbotron{
+  text-align: center;
+  background: linear-gradient(to bottom right,#0XDCB06D, #E53935, #E0F2F1);
+  font: Comic;
+  color: #DDB227;
+}
+.btn{
+  background-color: #56A8AE;
+}
+.btn:hover{
+  background-color: #56A8AE;
+  text-decoration: underline;
+  cursor: pointer;
+}
+.clickToView {
+  cursor: pointer;
+  /*color: #0088cc;*/
+}
+.clickToView:hover {
+  text-decoration: underline;
+}
+body{
+  font-family: "proxima-nova-soft", "Proxima Nova Soft", Helvetica, Arial, sans-serif;
+}

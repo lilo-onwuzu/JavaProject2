@@ -1,0 +1,11 @@
+#if ($userName)
+  <h4>Welcome $userName !</h4>
+#else
+  <form action="/" method="post">
+    <label for="inputName">Hello User, please enter your name:</label>
+    <input id="inputName" name="inputName" type="text">
+    <button type="submit" class="btn btn-info">Submit Name</button>
+  </form>
+#end
+
+<a href="/wordList" class="clickToView">See Full Word List</a>
