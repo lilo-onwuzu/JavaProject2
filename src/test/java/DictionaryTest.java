@@ -45,15 +45,17 @@ public class DictionaryTest extends FluentTest {
     assertThat(pageSource()).contains("Welcome Jane Doe");
   }
 
-  // @Test
-  // // test that a word can be added to the list
-  // public void addWord_getAndPost() {
-  //   goTo("http://localhost:4567/");
-  //   fill("#inputName").with("Jane Doe");
-  //   submit(".btn");
-  //   fill("inputWord").with("Epicodus");
-  //   submit(".btn");
-  //   assertThat(pageSource()).contains("Epicodus");
-  // }
+  @Test
+  // test that a word can be added to the list
+  public void addWord_getAndPost() {
+    goTo("http://localhost:4567/");
+    fill("#inputName").with("Jane Doe");
+    submit(".btn");
+    assertThat(pageSource()).contains("Welcome Jane Doe");
+    click("a", withText("Add A Word"));
+    fill("#inputWord").with("Epicodus");
+    submit(".btn");
+    assertThat(pageSource()).contains("Epicodus");
+  }
 
 }
