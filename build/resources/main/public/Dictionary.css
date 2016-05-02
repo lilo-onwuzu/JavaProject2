@@ -14,9 +14,15 @@
 }
 .clickToView {
   cursor: pointer;
-  /*color: #0088cc;*/
+  color: #0088cc;
 }
 .clickToView:hover {
+  text-decoration: underline;
+}
+.clickables {
+  cursor: pointer;
+}
+.clickables:hover {
   text-decoration: underline;
 }
 body{

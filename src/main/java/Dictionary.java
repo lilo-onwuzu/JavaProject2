@@ -12,48 +12,75 @@ public class Dictionary {
     staticFileLocation("/public");
     String layout = "templates/layout.vtl";
 
-    // get request to prompt user for name is there is no name saved in the session OR display customized homepage with user's name if otherwise. Includes link to wordList page
+    // get request to prompt user for name is there is no name saved in the session OR display customized homepage with user's name if otherwise.
+    // includes link to direct the user to wordList page
+    // includes link to direct the user to the addWord page
     get("/", (request, response) -> {
       HashMap model = new HashMap();
+      // if a $username is stored in the session, make the variable accessible in the home.vtl template using the model hashmap else the line below is not needed
+      model.put("userName", request.session().attribute("userName"));
       model.put("template", "templates/home.vtl");
-      // in the event that a $username is stored in the session, else the line below is not needed
-      request.session().attribute("userName", userName);
+      // ModelAndView is a class library in the spark API that allows variables in the .java files to be transferred through the model hashmaps into the templates that will be displayed by the server with the help of the spark application. Spark does not have the capability to use multiple templates with the same layout so the velocity template engine class in the spark API gives this capability.
       return new ModelAndView(model, layout);
     }, new VelocityTemplateEngine());
 
-    // defines what happens in the case that no $userName is saved in the session and  you make a post request to post the user's name to the session. This action should return the user back to the customized home page
+    // defines what happens in the case that no $userName is saved in the session and you make a post request to post the user's name to the url file path "/". This section defines how that post request is handled once it has been posted. get"/" and post"/" are essentially the same only get"/" describes what to do when the template only needs to be viewed for the first time or refreshed with $username available. Once the user's name is entered through the form, post"/" describes what to do when the template needs to be updated and then viewed.This action should return the user back to the customized home page
     post("/", (request, response) -> {
       HashMap model = new HashMap();
-      model.put("template", "templates/home.vtl");
+      // collect the user's name for="inputName" from the home.vtl page
       String userName = request.queryParams("inputName");
+      // store the userName into the session using cookies
+      request.session().attribute("userName", userName);
+      // after server is updated, the page still needs to be viewed
       model.put("userName", userName);
+      // after the user's name has been stored in the session return to the customized homepage
+      model.put("template", "templates/home.vtl");
       return new ModelAndView(model, layout);
     }, new VelocityTemplateEngine());
 
-    // get request made to server to display the addWord form in addWord.vtl page which makes a post request to the session
+    // defines the method to process a get request to server in order to display the addWord form in addWord.vtl page
+    // the form in addWord.vtl makes a post request to the url /wordList path so that the form info can be accessible in the /wordList url path
     get("addWord", (request, response) -> {
       HashMap model = new HashMap();
-      model.put("template", "templates/addWord.vtl")
+      model.put("template", "templates/addWord.vtl");
       return new ModelAndView(model, layout);
     }, new VelocityTemplateEngine());
 
-    // defines what happens after you make a post request to post a new word to the session from addWord.vtl page. This should return the user to the fullWordList page
-    post("/addWord", (request, response) -> {
+    // once the form inputs have been posted to the url file path in wordList.vtl, this defines how that post request is handled and how the page is viewed similar to get"/wordList". Returns wordList.vtl page
+    post("/wordList", (request, response) -> {
       HashMap model = new HashMap();
-      model.put("template", "templates.wordList.vtl")
-      return new ModelAndView (model, layout);
+      // collect the inputWord string and save as a variable
+      String newInputWord = request.queryParams("inputWord");
+      // create a new Word object using the Word(String wordName) construct. The String inputWord becomes the argument of the Word(String wordName) construct and a new word is created. Recall from Word.java class that whenever a new Word object is created, the word object is automatically added to a static (non-changing) arraylist of word objects "arraylist variable wordInstances" and an empty non-static (changing) arrayList variable is created within the word object that will receive all its definition objects.
+      Word newWord = new Word(newInputWord);
+      // apply Word Class method allwords() to return the full arraylist of words "wordInstances". Since wordInstances is a static arrayList, any word object can be used to return wordInstances. wordInstances is of type "ArrayList<Word>"
+      ArrayList<Word> fullWords = newWord.allWords();
+      // save the updated fullWords arraylist in the session everytime we post a new word so we do not have to create a new word object everytime we want to return use the allWords() method to return the fullWords arrayList
+      request.session().attribute("fullWords", fullWords);
+      model.put("fullWords", fullWords);
+      String newDefinition = request.queryParams("inputDefine");
+      Definition newDefinition = new Definition();
+      model.put("template", "templates/wordList.vtl");
+      return new ModelAndView(model, layout);
     }, new VelocityTemplateEngine());
 
-
+    // default get request for fullWordList page
     get("/wordList", (request, response) -> {
       HashMap model = new HashMap();
+      // retrieve the most recentlly updated fullWords arraylist saved in the session
+      model.put("fullWords", request.session().attribute("fullWords"));
       model.put("template", "templates/wordList.vtl");
-      String newInputWord = request.queryParams("inputWord");
-      Word newWord = new Word(newInputWord);
-      ArrayList<Word> fullWordList = new ArrayList<Word>(newWord.allWords());
-      model.put("fullWordList", fullWordList);
       return new ModelAndView(model, layout);
     }, new VelocityTemplateEngine());
+
+    // define should post to wordlist page
+    get("/defineWord", (request, response) -> {
+      HashMap model = new HashMap();
+      model.put("template", "templates/defineWord.vtl")
+      return new ModelAndView(model, layout);
+    }, new VelocityTemplateEngine());
+
+
 
   }
 }

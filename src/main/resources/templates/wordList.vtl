@@ -1,2 +1,15 @@
+<ol>
+#foreach ($word in $fullWords)
+  <li class="clickables">$word</li>
+  #if ($Definitions)
+  <ul>
+    #foreach ($define in $Defintions)
+    <li>$define</li>
+  </ul>
+  #end
+#end
+<ol>
 
-  <ol><li class="clickToView">word</li></ol>
+<p></p>
+<p></p>
+<a href="/addWord" class="clickToView">Add A Word</a>
