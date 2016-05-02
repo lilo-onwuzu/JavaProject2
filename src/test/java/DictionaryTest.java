@@ -24,7 +24,16 @@ public class DictionaryTest extends FluentTest {
   }
 
   @Test
-  // test that the user's name is collected and saved
+  // test that the user's name is collected and posaved
+  public void userName_get() {
+    goTo("http://localhost:4567/");
+    fill("#inputName").with("Jane Doe");
+    submit(".btn");
+    assertThat(pageSource()).contains("Welcome Jane Doe");
+  }
+
+  @Test
+  // test that the user's name is saved in session
   public void userName_get() {
     goTo("http://localhost:4567/");
     fill("#inputName").with("Jane Doe");
