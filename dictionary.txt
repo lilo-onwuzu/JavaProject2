@@ -10,20 +10,20 @@ Word Class Instantiates/
 Word Instantiates with Name/
 One word can be added to wordArray/
 Multiple words can be added to wordArray/
-Test that a definition is a method of a word class/
-Test that multiple definitions can be added to a word object/
-Test that the date of word creation can be accessed
-Test that user can click to view word definition
-Test that user can click to see multiple word definitions
+A definition is a method of a word class/
+Multiple definitions can be added to a word object/
+User can view a word's definition
+User can view multiple word definitions
 Test that homepage displays full list of words
+Date of word creation can be accessed
 Clear method empties all words
 
 Integration Tests:
 Home page UI works/
 User's name is collected and customized home page works/
 User's name posts correctly to the session/
-Test that a word can be created
-Test that multiple word can be created
+A word can be added to the list/
+Multiple words can be added to the list
 Test that multiple word can be viewed
 Test that a definition can be created
 Test that multiple definitions can be created

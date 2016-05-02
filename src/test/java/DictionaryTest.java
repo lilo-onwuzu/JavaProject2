@@ -46,8 +46,8 @@ public class DictionaryTest extends FluentTest {
   }
 
   @Test
-  // test that a word can be added to the list
-  public void addWord_getAndPost() {
+  // test that a word is posted to the list
+  public void addWord_addAndPost() {
     goTo("http://localhost:4567/");
     fill("#inputName").with("Jane Doe");
     submit(".btn");
@@ -56,6 +56,27 @@ public class DictionaryTest extends FluentTest {
     fill("#inputWord").with("Epicodus");
     submit(".btn");
     assertThat(pageSource()).contains("Epicodus");
+  }
+
+  @Test
+  // test that multiple words are posted to the list
+  public void addMultipleWords_addAndPost() {
+    goTo("http://localhost:4567/");
+    fill("#inputName").with("Jane Doe");
+    submit(".btn");
+    assertThat(pageSource()).contains("Welcome Jane Doe");
+    click("a", withText("Add A Word"));
+    fill("#inputWord").with("Epicodus");
+    submit(".btn");
+    click("a", withText("Add A Word"));
+    fill("#inputWord").with("Epicenter");
+    submit(".btn");
+    click("a", withText("Add A Word"));
+    fill("#inputWord").with("Software");
+    submit(".btn");
+    assertThat(pageSource()).contains("Epicodus");
+    assertThat(pageSource()).contains("Epicenter");
+    assertThat(pageSource()).contains("Software");
   }
 
 }
