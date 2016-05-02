@@ -1,10 +1,10 @@
 <ol>
 #foreach ($word in $fullWords)
-  <li class="clickables">$word</li>
-  #if ($Definitions)
+  <li class="clickables" href="/defineWord$myWordName">$word.getWordName()</li>
+  #if ($wordDefinitions)
   <ul>
-    #foreach ($define in $Defintions)
-    <li>$define</li>
+    #foreach ($define in $wordDefintions)
+    <li>$define.getDefinition()</li>
   </ul>
   #end
 #end

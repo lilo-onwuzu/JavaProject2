@@ -3,7 +3,6 @@ import org.junit.ClassRule;
 import org.junit.Test;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.htmlunit.HtmlUnitDriver;
-
 import static org.assertj.core.api.Assertions.assertThat;
 
 public class DictionaryTest extends FluentTest {
@@ -25,11 +24,11 @@ public class DictionaryTest extends FluentTest {
   }
 
   @Test
-  // test that the user's name is collected correctly
+  // test that the user's name is collected and saved
   public void userName_get() {
     goTo("http://localhost:4567/");
-    fill("#name").with("Lilo");
+    fill("#inputName").with("Jane Doe");
     submit(".btn");
-    assertThat(pageSource()).contains("Lilo");
+    assertThat(pageSource()).contains("Welcome Jane Doe");
   }
 }

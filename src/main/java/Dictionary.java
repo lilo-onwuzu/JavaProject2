@@ -46,24 +46,6 @@ public class Dictionary {
       return new ModelAndView(model, layout);
     }, new VelocityTemplateEngine());
 
-    // once the form inputs have been posted to the url file path in wordList.vtl, this defines how that post request is handled and how the page is viewed similar to get"/wordList". Returns wordList.vtl page
-    post("/wordList", (request, response) -> {
-      HashMap model = new HashMap();
-      // collect the inputWord string and save as a variable
-      String newInputWord = request.queryParams("inputWord");
-      // create a new Word object using the Word(String wordName) construct. The String inputWord becomes the argument of the Word(String wordName) construct and a new word is created. Recall from Word.java class that whenever a new Word object is created, the word object is automatically added to a static (non-changing) arraylist of word objects "arraylist variable wordInstances" and an empty non-static (changing) arrayList variable is created within the word object that will receive all its definition objects.
-      Word newWord = new Word(newInputWord);
-      // apply Word Class method allwords() to return the full arraylist of words "wordInstances". Since wordInstances is a static arrayList, any word object can be used to return wordInstances. wordInstances is of type "ArrayList<Word>"
-      ArrayList<Word> fullWords = newWord.allWords();
-      // save the updated fullWords arraylist in the session everytime we post a new word so we do not have to create a new word object everytime we want to return use the allWords() method to return the fullWords arrayList
-      request.session().attribute("fullWords", fullWords);
-      model.put("fullWords", fullWords);
-      String newDefinition = request.queryParams("inputDefine");
-      Definition newDefinition = new Definition();
-      model.put("template", "templates/wordList.vtl");
-      return new ModelAndView(model, layout);
-    }, new VelocityTemplateEngine());
-
     // default get request for fullWordList page
     get("/wordList", (request, response) -> {
       HashMap model = new HashMap();
@@ -73,10 +55,45 @@ public class Dictionary {
       return new ModelAndView(model, layout);
     }, new VelocityTemplateEngine());
 
-    // define should post to wordlist page
-    get("/defineWord", (request, response) -> {
+    // once the form inputs have been posted to the url file path in wordList.vtl, this defines how that post request is handled and how the page is viewed similar to get"/wordList". Returns wordList.vtl page
+    post("/wordList", (request, response) -> {
       HashMap model = new HashMap();
-      model.put("template", "templates/defineWord.vtl")
+      // collect the inputWord string and save as a variable
+      String newInputWord = request.queryParams("inputWord");
+      // create a new Word object using the Word(String wordName) construct. The String inputWord becomes the argument of the Word(String wordName) construct and a new word is created. Recall from Word.java class that whenever a new Word object is created, the word object is automatically added to a static (non-changing) arraylist of word objects "arraylist variable wordInstances" and an empty non-static (changing) arrayList variable is created within the word object that will receive all its definition objects.
+      Word newWord = new Word(newInputWord);
+      // apply Word Class method allwords() to return the full arraylist of words "wordInstances". Since wordInstances is a static arrayList, any word object can be used to return wordInstances. wordInstances is of type "ArrayList<Word>"
+      ArrayList<Word> fullWords = newWord.allWords();
+      // save the updated fullWords arraylist in the session everytime we post a new word so we do not have to create a new word object everytime we want to return use the allWords() method to return the fullWords arrayList. Recall that the fullWords arraylist is filled with word "objects" themselves. We need to access the wordName attribute/instance variable before we can display in the template
+      request.session().attribute("fullWords", fullWords);
+      String myWordName = newWord.getWordName();
+      // save every new word's name in the session
+      request.session().attribute("myWordName", myWordName);
+      // make fullWords list available in the template for display
+      model.put("fullWords", fullWords);
+
+      // // run this loop to attach specialized list of definition objects to each word object in the fullwords arraylist
+      // for (int index = 0; index < fullWords.size; index++) {
+      //   String concatEntry = ("inputDefine" + "word.getWordName()");
+      //   while (concatEntry.equals("inputDefine$myWordName")) {
+      //     // if inputDefine is not found, this is ignored. Whenever the post request in defineWord.vtl runs, the  path /wordsList will now see the String inputDefine
+      //     String inputDefinition = request.queryParams("inputDefine$myWordName");
+      //     // create new definition object using Definition(String define) construct
+      //     Definition newDefinition = new Definition(inputDefinition);
+      //     // for each word object in fullWords, attach a newDefinition object to its empty definitions arraylist and return the arraylist
+      //     ArrayList<Definition> wordDefinitions = word.addDefinition(newDefinition);
+      //     model.put("wordDefinitions", wordDefinitions);
+      //   }
+      // }
+
+      model.put("template", "templates/wordList.vtl");
+      return new ModelAndView(model, layout);
+    }, new VelocityTemplateEngine());
+
+    get("/defineWord:$myWordName", (request, response) -> {
+      HashMap model = new HashMap();
+      // model.put("myWordName", request.session().attribute(myWordName));
+      model.put("template", "templates/defineWord.vtl");
       return new ModelAndView(model, layout);
     }, new VelocityTemplateEngine());
 
