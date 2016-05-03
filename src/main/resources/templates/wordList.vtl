@@ -1,10 +1,19 @@
-<ol>
-#foreach ($word in $fullWords)
-  <li class="clickables" href="/defineWord$myWordName">$word.getWordName()</li>
-  
+<strong>Click on the words below to more definitions</strong>
+
+#if ($fullWords.size == 0)
+  <em>There are currently no words to display!</em>
+#else
+  <ol>
+    #foreach ($word in $fullWords)
+      <li class="clickables"><a href="/defineWord">$word.getWordName()</a></li>
+      #foreach ($definition in $wordDefinitions)
+        <p><em><li>$definition.getDefinition()</li></p></em>
+      #end
+    #end
+  <ol>
 #end
-<ol>
 
 <p></p>
-<p></p>
 <a href="/addWord" class="clickToView">Add A Word</a>
+<p></p>
+<a href="/" class="clickToView">Return To HomePage</a>

@@ -1,10 +1,16 @@
+<strong>Click on the words below to add one or more definitions</strong>
 <ol>
 #foreach ($word in $fullWords)
-  <li class="clickables" href="/defineWord$myWordName">$word.getWordName()</li>
-  
+  <li class="clickables"><a href="/defineWord">$word.getWordName()</a></li>
 #end
 <ol>
 
-<p></p>
+<form action="/defineWord" method="get">
+  <label for="hideWordName" type="hidden"></label>
+  <input id="hideWordName" name= "hideWordName" type="hidden" value="$word.getWordName()">
+</form>
+
 <p></p>
 <a href="/addWord" class="clickToView">Add A Word</a>
+<p></p>
+<a href="/" class="clickToView">Return To HomePage</a>

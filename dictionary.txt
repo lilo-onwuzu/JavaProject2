@@ -23,11 +23,7 @@ Home page UI works/
 User's name is collected and customized home page works/
 User's name posts correctly to the session/
 A word can be added to the list/
-Multiple words can be added to the list
-Test that multiple word can be viewed
-Test that a definition can be created
-Test that multiple definitions can be created
-Test that multiple definitions can be viewed
-Test that a Category can be created
-Test that multiple Categories can be created
-Test that multiple Categories can be viewed
+Multiple words can be added to the list/
+A definition can be added to the list for one word/
+Multiple definitions can be added to the list for one word/
+Multiple definitions can be added to the list for multiple words/

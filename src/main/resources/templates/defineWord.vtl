@@ -1,5 +1,10 @@
 <form action="/wordList" method="post">
-  <label for="inputDefine$myWordName">Add a new definition for $word:</label>
-  <input id="inputDefine$myWordName" name="inputDefine$myWordName" type="text">
+  <label for="inputDefine">Add a new definition for $newWord.getWordName():</label>
+  <input id="inputDefine" name="inputDefine" type="text">
   <button type="submit" class="btn btn-info">Add New Word</button>
 </form>
+
+<p></p>
+<a href="/wordList" class="clickToView">See Full Word List</a>
+<p></p>
+<a href="/addWord" class="clickToView">Add A Word</a>

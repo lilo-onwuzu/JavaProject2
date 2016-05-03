@@ -79,4 +79,79 @@ public class DictionaryTest extends FluentTest {
     assertThat(pageSource()).contains("Software");
   }
 
+  @Test
+  // test that a definition can be added to the list for one word
+  public void addOneDefinition_addAndPost() {
+    goTo("http://localhost:4567/");
+    fill("#inputName").with("Jane Doe");
+    submit(".btn");
+    assertThat(pageSource()).contains("Welcome Jane Doe");
+    click("a", withText("Add A Word"));
+    fill("#inputWord").with("Epicodus");
+    submit(".btn");
+    assertThat(pageSource()).contains("Epicodus");
+    click("a", withText("Epicodus"));
+    fill("#inputDefine").with("Epicodus is a special place to learn code");
+    submit(".btn");
+    assertThat(pageSource()).contains("Epicodus");
+    assertThat(pageSource()).contains("Epicodus is a special place to learn code");
+  }
+
+  @Test
+  // test that multiple definitions can be added to the list for one word
+  public void addMultipleDefinitions_addAndPost() {
+    goTo("http://localhost:4567/");
+    fill("#inputName").with("Jane Doe");
+    submit(".btn");
+    assertThat(pageSource()).contains("Welcome Jane Doe");
+    click("a", withText("Add A Word"));
+    fill("#inputWord").with("Epicodus");
+    submit(".btn");
+    assertThat(pageSource()).contains("Epicodus");
+    click("a", withText("Epicodus"));
+    fill("#inputDefine").with("Epicodus is a special place to learn code");
+    submit(".btn");
+    click("a", withText("Epicodus"));
+    fill("#inputDefine").with("Epicodus also has a relaxed atmosphere");
+    submit(".btn");
+    assertThat(pageSource()).contains("Epicodus");
+    assertThat(pageSource()).contains("Epicodus is a special place to learn code");
+    assertThat(pageSource()).contains("Epicodus also has a relaxed atmosphere");
+  }
+
+  @Test
+  // test that multiple definitions can be added to the list for multiple words
+  public void addMultipleDefinitionsMultipleWords_addAndPost() {
+    goTo("http://localhost:4567/");
+    fill("#inputName").with("Jane Doe");
+    submit(".btn");
+    assertThat(pageSource()).contains("Welcome Jane Doe");
+    click("a", withText("Add A Word"));
+    fill("#inputWord").with("Epicodus");
+    submit(".btn");
+    assertThat(pageSource()).contains("Epicodus");
+    click("a", withText("Epicodus"));
+    fill("#inputDefine").with("Epicodus is a special place to learn code");
+    submit(".btn");
+    click("a", withText("Epicodus"));
+    fill("#inputDefine").with("Epicodus also has a relaxed atmosphere");
+    submit(".btn");
+    click("a", withText("Add A Word"));
+    fill("#inputWord").with("Portland");
+    submit(".btn");
+    assertThat(pageSource()).contains("Portland");
+    click("a", withText("Portland"));
+    fill("#inputDefine").with("Portland is filled with such happy people");
+    submit(".btn");
+    click("a", withText("Portland"));
+    fill("#inputDefine").with("My city Portland is my home");
+    submit(".btn");
+    assertThat(pageSource()).contains("Epicodus");
+    assertThat(pageSource()).contains("Epicodus is a special place to learn code");
+    assertThat(pageSource()).contains("Epicodus also has a relaxed atmosphere");
+    assertThat(pageSource()).contains("Portland");
+    assertThat(pageSource()).contains("Portland is filled with such happy people");
+    assertThat(pageSource()).contains("My city Portland is my home");
+  }
+
 }
