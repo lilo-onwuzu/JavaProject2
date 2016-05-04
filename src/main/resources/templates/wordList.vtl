@@ -1,14 +1,16 @@
 <strong>Click on the words below to add more definitions</strong>
 
-#if ($count == 0)
-  <em>There are currently no words to display!</em>
-#else
+ #if ($newWord)
+ <em> No words to display yet!</em>
+ #else
   <ol>
     #foreach ($word in $fullWords)
-      <li class="clickables"><a href="/defineWord">$word.getWordName()</a></li>
-        <p><em>$wordDefinitions.getDefinition()</em></p>
+    <li>$word.getWordName()<li>
+      <ul>
+        <li>$word.getmDefinitions.getDefinition()</li>
+      <ul>
     #end
-  <ol>
+  </ol>
 #end
 
 <p></p>

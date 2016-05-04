@@ -85,8 +85,7 @@ public class Dictionary {
         ArrayList<Definition> wordDefinitions = word.getmDefinitions();
         model.put("wordDefinitions", wordDefinitions);
       }
-      Integer count = fullWords.size();
-      model.put("count", "count");
+      model.put("newWord", request.session().attribute("newWord"));
       model.put("template", "templates/wordList.vtl");
       return new ModelAndView(model, layout);
     }, new VelocityTemplateEngine());
@@ -100,8 +99,6 @@ public class Dictionary {
         ArrayList<Definition> wordDefinitions = word.getmDefinitions();
         model.put("wordDefinitions", wordDefinitions);
       }
-      Integer count = fullWords.size();
-      model.put("count", "count");
       model.put("template", "templates/wordList.vtl");
       return new ModelAndView(model, layout);
     }, new VelocityTemplateEngine());
