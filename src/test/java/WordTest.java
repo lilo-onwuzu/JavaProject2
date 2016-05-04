@@ -4,6 +4,12 @@ import java.util.ArrayList;
 
 public class WordTest{
 
+  @After
+  public void tearDown() {
+    // whenver the testing program execute, new word objects are being created that gets added to the wordInstances arraylist. @After tells the test program to clear the static arraylists in between and after tests so that indices and return objects are not mixed up
+    wordInstances.clear();
+  }
+
   @Test
   // test to create instance/object of the word class
   public void Word_instantiatesCorrectly_true(){
