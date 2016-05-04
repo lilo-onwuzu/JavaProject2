@@ -1,19 +1,14 @@
-import java.util.ArrayList;
-
+// definition class is the smallest unit class in this project
 public class Definition {
   private String mDefine;
-    // create an array list to store many definitions within one category
 
-  // definition construct
+  // definition construct. Default construct "Definition()" is not enough since we need to customize each definition
   public Definition(String define){
     mDefine = define;
-    // add this defintion created to a category but this is not requ9ired to create a definition since it is not in the argument list
   }
 
-  // method to add a string for definition
+  // every definition instance can return its name
   public String getDefinition(){
     return mDefine;
   }
-
-
 }

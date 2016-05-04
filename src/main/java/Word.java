@@ -1,39 +1,51 @@
-import java.util.ArrayList;
-import java.time.LocalDateTime;
-
-public class Word {
-  // this is an attribute/property/instance variable of the Word Class. this global scope instance variable is of reference type and so gets initialized as null. Global scope variables of primitive type gets initialized as '0'. Local scope variables do not get automativally instantiated and will cause compiler error if not initiatlized.
-  private String mName;
-  // id to keep track to number of words
-  private int wordId;
-  // arraylist to add the full list of word objects. Only one list of words objects so it can be static
-  private static ArrayList<Word> wordInstances = new ArrayList<Word>();
-  //arraylist to add one list of definitions per word. Should NOT be static
-  private ArrayList<Definition> mDefinitions;
-
-  // this is a constructor of the Word Class. If the constructor is not defined, the compiler definies one automatically assuming that no arguments are needed. In this case, an argument of the word name is needed to define to construct.
-  public Word(String wordName){
-    mName = wordName;
-    // automatically adds the newly formed word instance object to the full list of word objects
-    wordInstances.add(this);
-    // automatically create an empty arraylist of definition objects called mDefinitions whenever a word object is created or instanced
-    mDefinitions = new ArrayList<Definition>();
-  }
-
-  // method to get word name
-  public String getWordName(){
-    return mName;
-  }
-
-  // allWords() method returns the full list of word objects that have been instanced through the Word Class. Everytime a word instance object is created, add that instance object itself to the full list of word objects wordInstances
-  public static ArrayList<Word> allWords(){
-    return wordInstances;
-  }
-
-  // addDefinition(arg) method adds the definition object in the argument to the empty arraylist (definition arraylist "mdefinition" auto created with word object instance) of definition objects
-  public ArrayList<Definition> addDefinition(Definition definition){
-    mDefinitions.add(definition);
-    return mDefinitions;
-  }
-
-}
+// import java.util.ArrayList;
+// import java.time.LocalDateTime;
+//
+// public class Word {
+//   // this is where we declare the attribute/property/instance variables of the Word Class. "private String mName" global scope instance variable is of reference type and so gets initialized as null. Global scope variables of primitive type gets initialized as '0' 'null' or 'false'. Local scope variables do not get automatically initialized and will cause compiler error if not initiatlized within.
+//   // private access instance variables so that other Word objects or all other objects in general (within this class package) do not have access to these variables within methods in which they are called
+//   // mName is necessary customize word objects
+//   private String mName;
+//   // id to keep track of number of words
+//   private int wordId;
+//   // arraylist to add the full list of word objects. There should exist only one list of words objects so it must be static/non-changing from word object to word object
+//   private static ArrayList<Word> wordInstances = new ArrayList<Word>();
+//   // i can apply a variable mDefinition of type Definition to any of Word's methods
+//   Definition mDefinition;
+//   // arraylist to add list of definitions per word. Should not be static so mDefinitions should vary from word object to another
+//   private ArrayList<Definition> mDefinitions;
+//
+//   // this is where we define the construct of the Word Class. If the constructor is not defined, the compiler definies one automatically assuming that no arguments are needed(Word())
+//   public Word(String wordName){
+//     // only the mName information is required to be defined before any word object can be made, every other function within the construct just happen whenever the Word(mName) construct is called
+//     mName = wordName;
+//     // automatically adds the newly formed word instance object to the full list of word objects
+//     wordInstances.add(this);
+//     // automatically creates an empty arraylist of definition objects called mDefinitions whenever a word object is created or instanced
+//     mDefinitions = new ArrayList<Definition>(mDefinition);
+//   }
+//
+//   // method to get word name. will be useful in the UI.
+//   public String getWordName(){
+//     return mName;
+//   }
+//
+//   // addDefinition(arg) defines a method to operate on a definition object. Definition mDefinition is an attribute/property/instance variable of the word class so all Word methods can operate on them
+//   // the argument of this method is needed so that the addDefinition method cannot be called upon on a Word object without including the name of the definition object that needs to be added
+//   // addDefinition(mdefinition) method adds the property mDefinition to the auto created arraylist variable mDefinitions
+//   // void methods do not return anything when they are called. it just updates or does something.
+//   public void ArrayList<Definition> addDefinition(Definition definition){
+//     mDefinitions.add(definition);
+//   }
+//
+//   // allWords() method returns the full list of word objects that have been instanced through the Word Class (only one list). will be useful for looping through all the word objects created since program execution time while in the UI
+//   public static ArrayList<Word> allWords(){
+//     return wordInstances;
+//   }
+//
+//   // returns the full arraylist of definition "objects" for this word class will be useful to loop through the list of definitions for a Word object in the UI
+//   public getmDefinitions(){
+//     return mDefinitions;
+//   }
+//
+// }

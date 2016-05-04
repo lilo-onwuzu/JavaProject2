@@ -1,14 +1,17 @@
-<strong>Click on the words below to add one or more definitions</strong>
-<ol>
-#foreach ($word in $fullWords)
-  <li class="clickables"><a href="/defineWord">$word.getWordName()</a></li>
-#end
-<ol>
+<strong>Click on the words below to more definitions</strong>
 
-<form action="/defineWord" method="get">
-  <label for="hideWordName" type="hidden"></label>
-  <input id="hideWordName" name= "hideWordName" type="hidden" value="$word.getWordName()">
-</form>
+#if ($fullWords.size == 0)
+  <em>There are currently no words to display!</em>
+#else
+  <ol>
+    #foreach ($word in $fullWords)
+      <li class="clickables"><a href="/defineWord">$word.getWordName()</a></li>
+      #foreach ($definition in $wordDefinitions)
+        <p><em><li>$definition.getDefinition()</li></p></em>
+      #end
+    #end
+  <ol>
+#end
 
 <p></p>
 <a href="/addWord" class="clickToView">Add A Word</a>
