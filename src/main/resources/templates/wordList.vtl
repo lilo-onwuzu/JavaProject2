@@ -6,9 +6,7 @@
   <ol>
     #foreach ($word in $fullWords)
       <li class="clickables"><a href="/defineWord">$word.getWordName()</a></li>
-      #foreach ($definition in $wordDefinitions)
-        <p><em><li>$definition.getDefinition()</li></em></p>
-      #end
+        <p><em>$wordDefinitions.getDefinition()</em></p>
     #end
   <ol>
 #end
