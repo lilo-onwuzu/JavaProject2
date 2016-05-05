@@ -1,13 +1,16 @@
-<strong>Click on the words below to add more definitions</strong>
-
-<ol>
-  #foreach ($word in $fullWords)
-    <li>$word.getWordName()</li>
-    #foreach ($definition in $word.getmDefinitions())
-      <em>$definition.getDefinition()</em>
+#if ($fullWords.size() == $zero)
+  <em>There are currently no words to display!</em>
+#else
+  <strong>Click on the words below to add more definitions</strong>
+  <ol>
+    #foreach ($word in $fullWords)
+      <li><a class="clickables" href="/addNewDefine">$word.getWordName()</a></li>
+      #foreach ($definition in $word.getmDefinitions())
+        <em>$definition.getDefinition()</em>
+      #end
     #end
-  #end
-</ol>
+  </ol>
+#end
 
 <p></p>
 <a href="/addWord" class="clickToView">Add A Word</a>

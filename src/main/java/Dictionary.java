@@ -76,11 +76,6 @@ public class Dictionary {
       // retrieve the most recently updated fullWords arraylist of word objects saved in the session
       ArrayList<Word> fullWords = request.session().attribute("fullWords");
       model.put("fullWords", fullWords);
-      // retrieve the full arraylist of definition objects for every word that has been instanced/created
-      for (Word word : fullWords) {
-        ArrayList<Definition> wordDefinitions = word.getmDefinitions();
-        model.put("wordDefinitions", wordDefinitions);
-      }
       model.put("newWord", request.session().attribute("newWord"));
       model.put("template", "templates/wordList.vtl");
       return new ModelAndView(model, layout);
@@ -97,10 +92,9 @@ public class Dictionary {
       // an empty new/non-static arraylist variable (mDefinitions) of type ArrayList<Definition> was already created within the newWord object. Recall addDefinition(Definition define) is a Word method that adds a Definition to the mDefinitions arraylist. This will add the first definition to the word
       Word newWord = request.session().attribute("newWord");
       newWord.addDefinition(newDefinition);
-      for (Word word : fullWords) {
-        ArrayList<Definition> wordDefinitions = word.getmDefinitions();
-        model.put("wordDefinitions", wordDefinitions);
-      }
+      Integer zero = 0;
+      model.put("zero", zero);
+      model.put("newWord", newWord);
       model.put("template", "templates/wordList.vtl");
       return new ModelAndView(model, layout);
     }, new VelocityTemplateEngine());
