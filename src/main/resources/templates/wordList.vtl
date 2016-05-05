@@ -3,7 +3,9 @@
 <ol>
   #foreach ($word in $fullWords)
     <li>$word.getWordName()</li>
-      <em>$word.getmDefinitions().get(0).getDefinition()</em>
+    #foreach ($definition in $word.getmDefinitions())
+      <em>$definition.getDefinition()</em>
+    #end
   #end
 </ol>
 
