@@ -1,17 +1,11 @@
 <strong>Click on the words below to add more definitions</strong>
 
- #if ($newWord)
- <em> No words to display yet!</em>
- #else
-  <ol>
-    #foreach ($word in $fullWords)
-    <li>$word.getWordName()<li>
-      <ul>
-        <li>$word.getmDefinitions.getDefinition()</li>
-      <ul>
-    #end
-  </ol>
-#end
+<ol>
+  #foreach ($word in $fullWords)
+    <li>$word.getWordName()</li>
+      <em>$word.getmDefinitions().get(0).getDefinition()</em>
+  #end
+</ol>
 
 <p></p>
 <a href="/addWord" class="clickToView">Add A Word</a>

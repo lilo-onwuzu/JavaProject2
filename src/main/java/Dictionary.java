@@ -51,7 +51,7 @@ public class Dictionary {
     }, new VelocityTemplateEngine());
 
     // if a get request is made using a form, the name/value pairs are appended to the url of the form action/triggered page
-    // Our "/addWord" page had triggered a get request to "/define" on submit. Therefore in this get request method, we need to define how the server should handle both the name/value pairs appended to the URL using the addWord form and the name/value pairs in the "/define" form
+    // Our "/addWord" page had triggered a get request to "/define" on submit. Therefore in this get request method, we need to define how the server should handle the name/value pairs appended to the URL using the addWord form
     get("/define", (request, response) -> {
       // define hashmap operation is to map string to variable. We need to tell this hashmap called model to map String to Object
       HashMap<String, Object> model = new HashMap<String, Object>();
@@ -61,14 +61,10 @@ public class Dictionary {
       // whenever a new Word object is created, apply Word Class method allwords() to return the full arraylist of words. Since it is a static arrayList, any word object can be used to return the most recently updated arraylist of word objects. The arraylist should be of type ArrayList<Word>
       // whenever a new word object is created, save the most recently updated arraylist fullWords into the session
       ArrayList<Word> fullWords = newWord.allWords();
+      request.session().attribute("newWord", newWord);
       request.session().attribute("fullWords", fullWords);
       // and then make it available in the UI template
-      model.put("fullWords", request.session().attribute("fullWords"));
-      // access the query parameters in the /define form
-      String newDefine = request.queryParams("inputDefine");
-      Definition newDefinition = new Definition(newDefine);
-      // an empty new/non-static arraylist variable (mDefinitions) of type ArrayList<Definition> was already created within the newWord object. Recall addDefinition(Definition define) is a Word method that adds a Definition to the mDefinitions arraylist. This will add the first definition to the word
-      newWord.addDefinition(newDefinition);
+      model.put("fullWords", fullWords);
       model.put("newWord", newWord);
       model.put("template", "templates/defineWord.vtl");
       return new ModelAndView(model, layout);
@@ -95,6 +91,12 @@ public class Dictionary {
       HashMap<String, Object> model = new HashMap<String, Object>();
       ArrayList<Word> fullWords = request.session().attribute("fullWords");
       model.put("fullWords", fullWords);
+      // access the query parameters in the /define form
+      String newDefine = request.queryParams("inputDefine");
+      Definition newDefinition = new Definition(newDefine);
+      // an empty new/non-static arraylist variable (mDefinitions) of type ArrayList<Definition> was already created within the newWord object. Recall addDefinition(Definition define) is a Word method that adds a Definition to the mDefinitions arraylist. This will add the first definition to the word
+      Word newWord = request.session().attribute("newWord");
+      newWord.addDefinition(newDefinition);
       for (Word word : fullWords) {
         ArrayList<Definition> wordDefinitions = word.getmDefinitions();
         model.put("wordDefinitions", wordDefinitions);
