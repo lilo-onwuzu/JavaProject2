@@ -1,4 +1,5 @@
 import java.util.ArrayList;
+import java.time.LocalDateTime;
 
 public class Word {
   // this is where we declare the attribute/property/instance variables of the Word Class. "private String mName" global scope instance variable is of reference type and so gets initialized as null. Global scope variables of primitive type gets initialized as '0' 'null' or 'false'. Local scope variables do not get automatically initialized and will cause compiler error if not initiatlized within.
@@ -11,6 +12,7 @@ public class Word {
   private static ArrayList<Word> wordInstances = new ArrayList<Word>();
   // arraylist to add list of definitions per word. Should not be static so mDefinitions should vary from word object to another
   private ArrayList<Definition> mDefinitions;
+  private LocalDateTime mCreatedAt = LocalDateTime.now();
 
   // this is where we define the construct of the Word Class. If the constructor is not defined, the compiler definies one automatically assuming that no arguments are needed(Word())
   public Word(String wordName){
@@ -52,6 +54,10 @@ public class Word {
 
   public int getId() {
     return mId;
+  }
+
+  public LocalDateTime getCreatedAt() {
+    return mCreatedAt;
   }
 
   public static Word find(int id) {

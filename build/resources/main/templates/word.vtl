@@ -3,7 +3,7 @@
 #if ($wordDefinitions.size() != 0)
   <ul>
     #foreach ($definition in $wordDefinitions)
-    <li>$definition.getDefinition()</li>
+    <li>$definition.getDefinition()</li><small><em>$definition.getCreatedAt()</em></small>
     #end
   </ul>
 #else

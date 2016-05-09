@@ -2,7 +2,7 @@
   <strong>Click on the words below to see their full list of definitions</strong>
   <ol>
     #foreach ($word in $Words)
-      <li class="clickables"><a href="/words/$word.getId()">$word.getWordName()</a></li>
+      <li class="clickables"><a href="/words/$word.getId()">$word.getWordName()</a></li><small><em>$word.getCreatedAt()</em></small>
     #end
   </ol>
 #else

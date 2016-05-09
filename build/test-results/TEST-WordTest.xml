@@ -1,10 +1,12 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<testsuite name="WordTest" tests="6" skipped="0" failures="0" errors="0" timestamp="2016-05-09T19:45:32" hostname="epicodus-68.local" time="0.007">
+<testsuite name="WordTest" tests="8" skipped="0" failures="0" errors="0" timestamp="2016-05-09T20:17:34" hostname="epicodus-68.local" time="0.002">
   <properties/>
-  <testcase name="allWords_canAddMultipleWords_String" classname="WordTest" time="0.001"/>
+  <testcase name="allWords_canAddMultipleWords_String" classname="WordTest" time="0.0"/>
   <testcase name="Word_canAddOneWord_String" classname="WordTest" time="0.0"/>
-  <testcase name="addDefinition_canAddMultipleDefinitionsForOneWord_String" classname="WordTest" time="0.003"/>
-  <testcase name="Word_instantiatesCorrectly_true" classname="WordTest" time="0.002"/>
+  <testcase name="addDefinition_canAddMultipleDefinitionsForOneWord_String" classname="WordTest" time="0.001"/>
+  <testcase name="Word_instantiatesCorrectly_true" classname="WordTest" time="0.0"/>
+  <testcase name="getCreatedAt_instantiatesWithCurrentTime_today" classname="WordTest" time="0.0"/>
+  <testcase name="find_returnsNullWhenNoWordFound_null" classname="WordTest" time="0.0"/>
   <testcase name="Word_instantiatesWithName_String" classname="WordTest" time="0.0"/>
   <testcase name="addDefinition_canAddOneDefinitionForOneWord_String" classname="WordTest" time="0.0"/>
   <system-out><![CDATA[]]></system-out>

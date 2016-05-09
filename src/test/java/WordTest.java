@@ -1,6 +1,7 @@
 import org.junit.*;
 import static org.junit.Assert.*;
 import java.util.ArrayList;
+import java.time.LocalDateTime;
 
 public class WordTest{
 
@@ -61,6 +62,17 @@ public class WordTest{
     testWord.addDefinition(testDefinition2);
     assertTrue(testWord.getmDefinitions().contains(testDefinition));
     assertEquals("this word is really good", testWord.getmDefinitions().get(1).getDefinition());
+  }
+
+  @Test
+  public void getCreatedAt_instantiatesWithCurrentTime_today() {
+    Word myWord = new Word("word");
+    assertEquals(LocalDateTime.now().getDayOfWeek(), myWord.getCreatedAt().getDayOfWeek());
+  }
+
+  @Test
+  public void find_returnsNullWhenNoWordFound_null() {
+    assertTrue(Word.find(999) == null);
   }
 
 }
