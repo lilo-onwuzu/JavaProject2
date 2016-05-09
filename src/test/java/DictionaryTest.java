@@ -1,3 +1,4 @@
+import org.junit.*;
 import org.fluentlenium.adapter.FluentTest;
 import org.junit.ClassRule;
 import org.junit.Test;
@@ -9,6 +10,12 @@ import static org.fluentlenium.core.filter.FilterConstructor.*;
 
 public class DictionaryTest extends FluentTest {
   public WebDriver webDriver = new HtmlUnitDriver();
+
+  @After
+  public void tearDown() {
+    // whenever the testing program executes (even in the integration test), new word objects are being created that gets added to the wordInstances arraylist. @After tells the test program to clear all the word objects used in testingso they are not mixed up with the word objects in the program itself. We also need to clear the word objects so each new test starts on a fresh note and the word ids are not mixed up. To use "@After" rule, we have to call the jUnit class library in the integration test
+    Word.clear();
+  }
 
   @Override
   public WebDriver getDefaultDriver() {
@@ -114,7 +121,7 @@ public class DictionaryTest extends FluentTest {
     click("a", withText("Add A New Definition for Epicodus"));
     fill("#inputDefine").with("Epicodus is a special place to learn code");
     submit(".btn");
-    click("a", withText("Add A New Definition For Epicodus"));
+    click("a", withText("Add A New Definition for Epicodus"));
     fill("#inputDefine").with("Epicodus also has a relaxed atmosphere");
     submit(".btn");
     assertThat(pageSource()).contains("Epicodus");
@@ -137,7 +144,7 @@ public class DictionaryTest extends FluentTest {
     click("a", withText("Add A New Definition for Epicodus"));
     fill("#inputDefine").with("Epicodus is a special place to learn code");
     submit(".btn");
-    click("a", withText("Add A New Definition For Epicodus"));
+    click("a", withText("Add A New Definition for Epicodus"));
     fill("#inputDefine").with("Epicodus also has a relaxed atmosphere");
     submit(".btn");
     click("a", withText("Add A Word"));
@@ -148,15 +155,17 @@ public class DictionaryTest extends FluentTest {
     click("a", withText("Add A New Definition for Portland"));
     fill("#inputDefine").with("Portland is filled with such happy people");
     submit(".btn");
-    click("a", withText("Add A New Definition For Portland"));
+    click("a", withText("Add A New Definition for Portland"));
     fill("#inputDefine").with("My city Portland is my home");
     submit(".btn");
-    assertThat(pageSource()).contains("Epicodus");
-    assertThat(pageSource()).contains("Epicodus is a special place to learn code");
-    assertThat(pageSource()).contains("Epicodus also has a relaxed atmosphere");
     assertThat(pageSource()).contains("Portland");
     assertThat(pageSource()).contains("Portland is filled with such happy people");
     assertThat(pageSource()).contains("My city Portland is my home");
+    click("a", withText("See Full Word List"));
+    click("a", withText("Epicodus"));
+    assertThat(pageSource()).contains("Epicodus");
+    assertThat(pageSource()).contains("Epicodus is a special place to learn code");
+    assertThat(pageSource()).contains("Epicodus also has a relaxed atmosphere");
   }
 
 }

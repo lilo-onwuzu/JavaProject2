@@ -60,6 +60,7 @@ public class Word {
     return mCreatedAt;
   }
 
+  // find(id) to find particular word object instances with ids with an try/catch block to throw exceptions when the object cannot be found. this way the error does not cause the program to terminate. It provides a way to "handle" the error.
   public static Word find(int id) {
     try {
       return wordInstances.get(id - 1);

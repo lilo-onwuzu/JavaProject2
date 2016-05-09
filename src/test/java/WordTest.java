@@ -8,8 +8,7 @@ public class WordTest{
   @After
   public void tearDown() {
     // whenver the testing program execute, new word objects are being created that gets added to the wordInstances arraylist. @After tells the test program to clear the static arraylists in between and after tests so that indices and return objects are not mixed up
-    ArrayList<Word> wordObjects = Word.allWords();
-    wordObjects.clear();
+    Word.clear();
   }
 
   @Test

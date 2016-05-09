@@ -74,6 +74,7 @@ public class Dictionary {
       return new ModelAndView(model, layout);
     }, new VelocityTemplateEngine());
 
+    // : is called a "catch all". it does not really do anything. It just acts as a seperator 
     get("/words/:id", (request, response) -> {
       HashMap<String, Object> model = new HashMap<String, Object>();
       Word word = Word.find(Integer.parseInt(request.params(":id")));

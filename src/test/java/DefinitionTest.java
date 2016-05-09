@@ -24,10 +24,4 @@ public class DefinitionTest {
     assertEquals("this word is good", testDefinition.getDefinition());
   }
 
-  @Test
-  public void getCreatedAt_instantiatesWithCurrentTime_today() {
-    Definition myDefinition = new Definition("this word is good");
-    assertEquals(LocalDateTime.now().getDayOfWeek(), myDefinition.getCreatedAt().getDayOfWeek());
-  }
-
 }

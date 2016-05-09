@@ -16,7 +16,4 @@ public class Definition {
     return mDefine;
   }
 
-  public LocalDateTime getCreatedAt() {
-    return mCreatedAt;
-  }
 }
