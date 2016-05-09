@@ -28,75 +28,82 @@ public class Dictionary {
 
     // defines what happens in the case that no $userName is saved in the session. Since there is no $userName in the session, the form will be displayed for the user to input name. The form accepts this info and directs the page using form action="/" to back to the initial page "/" only now, there will be $userName saved in the session and a customized welcome page is displayed.
     // now you have made a post request using the form, we have to define how to handle the info collected in that form. do we want to operate on that info it here? or make it directly available in the session? or operate on it, collect some secondary info and then make that info available in the session? We define all that here
-    // posts request are typically used to update pages
+    // posts request are typically used to add something to pages
+    // RESTful webpages use different http methods to handle different requests to do something on one url path instead of using different paths
     // for this program, there is only one "/" path, in one case where the userName is stored, the "default" get request is sent to the server and the template welcomes the user with the customize page and the other case where $userName is not saved in the session cookie so the default get request runs first, which displays the form that asks for the user's name and triggers a post request that does the same function as the get "/" request only this time, $userName will be available in the session
+    // both get and post "/" point to different options in a conditional statement in the home.vtl template
     post("/", (request, response) -> {
       HashMap model = new HashMap();
       // collect the user's name from the name/value pair (for="inputName") in home.vtl
       String userName = request.queryParams("inputName");
       // store the userName into the session using cookies to make it available from page to page
       request.session().attribute("userName", userName);
-      // after the server has handles the post request and the session has been updated with $userName, we want to display the home.vtl page again only this time $userName will not be null/false. and will display a customized welcome page
       model.put("userName", userName);
       model.put("template", "templates/home.vtl");
       return new ModelAndView(model, layout);
     }, new VelocityTemplateEngine());
 
-    // once the user clicks the link in the "/" path to add a word, this triggers a get "/addWord" request to the serve. this defines the method to process that get request by the browser to the server through Spark in order to display the addWord form in the addWord.vtl page. The form action for the addWord form triggers a "get" request to get the "/define" path once the form is submitted and to display the /define page.
+    // once the user clicks the link in the "/" path to add a word, this triggers a get "/addWord" request to the server. this defines the method to process that get request by the browser to the server through Spark in order to display the addWord form in the addWord.vtl page. The form action for the addWord form triggers a "get" request to get the "/define" path once the form is submitted and to display the /define page.
     // <form action="/define" method="get"> places a get request for the "/define" path next after the form is sucessfully submitted and posts the name/value pair values e.g (inputWord=hello) to the end of the /define URL path e.g the page that comes up after the form is submitted will likely be: /define?inputWord=hello assuming hello was the input value for the label with name:inputWord
-    get("/addWord", (request, response) -> {
+    get("/word/new", (request, response) -> {
       HashMap model = new HashMap();
       model.put("template", "templates/addWord.vtl");
       return new ModelAndView(model, layout);
     }, new VelocityTemplateEngine());
 
     // if a get request is made using a form, the name/value pairs are appended to the url of the form action/triggered page
-    // Our "/addWord" page had triggered a get request to "/define" on submit. Therefore in this get request method, we need to define how the server should handle the name/value pairs appended to the URL using the addWord form
-    get("/define", (request, response) -> {
-      // define hashmap operation is to map string to variable. We need to tell this hashmap called model to map String to Object
-      HashMap<String, Object> model = new HashMap<String, Object>();
+    // Our "/word/new" page will trigger a post request to the "/words" page on submit using the form so we will need to define how to handle a client request when a post request is made to the "/words" page. Therefore in this post request method, we need to define how the server should process the user inputs in the post request
+    post("/words", (request, response) -> {
+      HashMap model = new HashMap();
       String newInputWord = request.queryParams("inputWord");
-      // create a new Word object using the Word(String wordName) construct. The String inputWord becomes the argument of the Word(String wordName) construct and a new word is created. Recall from Word.java class that whenever a new Word object is created, the word object is automatically added to a static (non-changing) arraylist of word objects "arraylist variable wordInstances" and an empty non-static (changing) arrayList variable is created within the word object that will receive all its definition objects.
+      // create a new Word object using the Word(String wordName) construct. The String inputWord becomes the argument of the Word(String wordName) construct and a new word is created. Recall from Word.java class that whenever a new Word object is created, the word object is automatically added to a static (non-changing) arraylist of word objects "arraylist variable wordInstances" and an empty non-static (changing) arrayList variable is created within the word object that will receive all its definition objects. Static methods can be used on the classes themselves because they are not specific to the object instances of the classes
+      // whenever a word object is created, it is automatically added to the stativ arraylist of words
       Word newWord = new Word(newInputWord);
-      // whenever a new Word object is created, apply Word Class method allwords() to return the full arraylist of words. Since it is a static arrayList, any word object can be used to return the most recently updated arraylist of word objects. The arraylist should be of type ArrayList<Word>
-      // whenever a new word object is created, save the most recently updated arraylist fullWords into the session
-      ArrayList<Word> fullWords = newWord.allWords();
-      request.session().attribute("newWord", newWord);
-      request.session().attribute("fullWords", fullWords);
-      // and then make it available in the UI template
-      model.put("fullWords", fullWords);
-      model.put("newWord", newWord);
+      // apply Word Class method allwords() to return the full arraylist of words. Since it is a static arrayList, any word object can be used to return the most recently updated arraylist of word objects including the class itself
+      model.put("Words", Word.allWords());
+      model.put("template", "templates/wordList.vtl");
+      return new ModelAndView(model, layout);
+    }, new VelocityTemplateEngine());
+
+    // default get request in the case that "/words" is accessed by clicking on a link or typing it in the url
+    // if "/words" is accessed by submitting a form, the request will be handled by the post request above
+    get("/words", (request, response) -> {
+      HashMap<String, Object> model = new HashMap<String, Object>();
+      model.put("Words", Word.allWords());
+      model.put("template", "templates/wordList.vtl");
+      return new ModelAndView(model, layout);
+    }, new VelocityTemplateEngine());
+
+    get("/words/:id", (request, response) -> {
+      HashMap<String, Object> model = new HashMap<String, Object>();
+      Word word = Word.find(Integer.parseInt(request.params(":id")));
+      ArrayList<Definition> wordDefinitions = word.getmDefinitions();
+      model.put("word", word);
+      model.put("wordDefinitions", wordDefinitions);
+      model.put("template", "templates/word.vtl");
+      return new ModelAndView(model, layout);
+    }, new VelocityTemplateEngine());
+
+    get("/words/:id/define", (request, response) -> {
+      HashMap model = new HashMap();
+      Word word = Word.find(Integer.parseInt(request.params(":id")));
+      model.put("word", word);
       model.put("template", "templates/defineWord.vtl");
       return new ModelAndView(model, layout);
     }, new VelocityTemplateEngine());
 
-    // default get request in the case that "/wordList" is accessed by clicking on a link
-    get("/wordList", (request, response) -> {
+    post("/words/:id", (request, response) -> {
       HashMap<String, Object> model = new HashMap<String, Object>();
-      // retrieve the most recently updated fullWords arraylist of word objects saved in the session
-      ArrayList<Word> fullWords = request.session().attribute("fullWords");
-      model.put("fullWords", fullWords);
-      model.put("newWord", request.session().attribute("newWord"));
-      model.put("template", "templates/wordList.vtl");
+      Word word = Word.find(Integer.parseInt(request.params(":id")));
+      String newDefine = request.queryParams("inputDefine");
+      Definition newDefinition = new Definition(newDefine);
+      word.addDefinition(newDefinition);
+      ArrayList<Definition> wordDefinitions = word.getmDefinitions();
+      model.put("wordDefinitions", wordDefinitions);
+      model.put("word", word);
+      model.put("template", "templates/word.vtl");
       return new ModelAndView(model, layout);
     }, new VelocityTemplateEngine());
 
-    // post request in the case that "/wordList" is accessed by submitting the form in "/define"
-    post("/wordList", (request, response) -> {
-      HashMap<String, Object> model = new HashMap<String, Object>();
-      ArrayList<Word> fullWords = request.session().attribute("fullWords");
-      model.put("fullWords", fullWords);
-      // access the query parameters in the /define form
-      String newDefine = request.queryParams("inputDefine");
-      Definition newDefinition = new Definition(newDefine);
-      // an empty new/non-static arraylist variable (mDefinitions) of type ArrayList<Definition> was already created within the newWord object. Recall addDefinition(Definition define) is a Word method that adds a Definition to the mDefinitions arraylist. This will add the first definition to the word
-      Word newWord = request.session().attribute("newWord");
-      newWord.addDefinition(newDefinition);
-      Integer zero = 0;
-      model.put("zero", zero);
-      model.put("newWord", newWord);
-      model.put("template", "templates/wordList.vtl");
-      return new ModelAndView(model, layout);
-    }, new VelocityTemplateEngine());
   }
 }

@@ -1,5 +1,4 @@
 import java.util.ArrayList;
-import java.time.LocalDateTime;
 
 public class Word {
   // this is where we declare the attribute/property/instance variables of the Word Class. "private String mName" global scope instance variable is of reference type and so gets initialized as null. Global scope variables of primitive type gets initialized as '0' 'null' or 'false'. Local scope variables do not get automatically initialized and will cause compiler error if not initiatlized within.
@@ -7,11 +6,9 @@ public class Word {
   // mName is necessary customize word objects
   private String mName;
   // id to keep track of number of words
-  private int wordId;
+  private int mId;
   // arraylist to add the full list of word objects. There should exist only one list of words objects so it must be static/non-changing from word object to word object
   private static ArrayList<Word> wordInstances = new ArrayList<Word>();
-  // i can apply a variable mDefinition of type Definition to any of Word's methods
-  Definition mDefinition;
   // arraylist to add list of definitions per word. Should not be static so mDefinitions should vary from word object to another
   private ArrayList<Definition> mDefinitions;
 
@@ -23,6 +20,7 @@ public class Word {
     wordInstances.add(this);
     // automatically creates an empty arraylist of definition objects called mDefinitions whenever a word object is created or instanced
     mDefinitions = new ArrayList<Definition>();
+    mId = wordInstances.size();
   }
 
   // method to get word name. will be useful in the UI and testing.
@@ -46,6 +44,22 @@ public class Word {
   // returns the full arraylist of definition "objects" for this word class will be useful to loop through the list of definitions for a Word object in the UI
   public ArrayList<Definition> getmDefinitions(){
     return mDefinitions;
+  }
+
+  public static void clear() {
+    wordInstances.clear();
+  }
+
+  public int getId() {
+    return mId;
+  }
+
+  public static Word find(int id) {
+    try {
+      return wordInstances.get(id - 1);
+    } catch (IndexOutOfBoundsException exception) {
+        return null;
+      }
   }
 
 }

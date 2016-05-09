@@ -1,18 +1,17 @@
-#if ($fullWords.size() == $zero)
-  <em>There are currently no words to display!</em>
-#else
-  <strong>Click on the words below to add more definitions</strong>
+#if ($Words.size() != 0)
+  <strong>Click on the words below to see their full list of definitions</strong>
   <ol>
-    #foreach ($word in $fullWords)
-      <li><a class="clickables" href="/addNewDefine">$word.getWordName()</a></li>
-      #foreach ($definition in $word.getmDefinitions())
-        <em>$definition.getDefinition()</em>
-      #end
+    #foreach ($word in $Words)
+      <li class="clickables"><a href="/words/$word.getId()">$word.getWordName()</a></li>
     #end
   </ol>
+#else
+  <em>There are currently no words to display!</em>
 #end
 
 <p></p>
-<a href="/addWord" class="clickToView">Add A Word</a>
-<p></p>
 <a href="/" class="clickToView">Return To HomePage</a>
+<p></p>
+<a href="/word/new" class="clickToView">Add A Word</a>
+<p></p>
+<a href="/words" class="clickToView">Full Words List</a>
