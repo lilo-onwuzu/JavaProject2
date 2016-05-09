@@ -7,7 +7,8 @@ public class WordTest{
   @After
   public void tearDown() {
     // whenver the testing program execute, new word objects are being created that gets added to the wordInstances arraylist. @After tells the test program to clear the static arraylists in between and after tests so that indices and return objects are not mixed up
-    wordInstances.clear();
+    ArrayList<Word> wordObjects = Word.allWords();
+    wordObjects.clear();
   }
 
   @Test
@@ -29,16 +30,16 @@ public class WordTest{
   public void Word_canAddOneWord_String(){
     Word testWord = new Word("word");
     // assertTrue is a method of the junit class library that passes this test if the argument evaluate to true
-    assertTrue(testWord.allWords().contains(testWord));
+    assertTrue(Word.allWords().contains(testWord));
   }
 
   @Test
-  // test to see that allWords() method adds multiple word objects automatically to the full arraylist of word objects. allWords() can be applied to any word object but will return the most updated list of wordInstances
+  // test to see that allWords() method adds multiple word objects automatically to the full arraylist of word objects. allWords() can be applied to any word object or the class object itself but will return the most updated list of wordInstances
   public void allWords_canAddMultipleWords_String(){
     Word testWord = new Word("my word");
     Word testWord2 = new Word("your word");
-    assertTrue(testWord.allWords().contains(testWord));
-    assertTrue(testWord.allWords().contains(testWord2));
+    assertTrue(Word.allWords().contains(testWord));
+    assertTrue(Word.allWords().contains(testWord2));
   }
 
   @Test

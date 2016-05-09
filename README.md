@@ -1,24 +1,29 @@
-Word Puzzle Site Word Puzzle Site for Epicodus Level2 Java Project 1
+Dictionary Web Application for Epicodus Level2 Java Project 2:
 
 By Ililochi Onwuzu
 
-Description
+Description:
 
-This site presents a game with two players: Guesser and Coordinator. In the home page, the Coordinator inputs a string of word(s). In the next page (/showPuzzle), a new string is shown with the vowels in the Coordinator's string hidden. Guesser then inputs a string to try to guess the coordinators string. If it matches, the Guesser wins the game. If not, the Coordinator wins. The code was designed using BDD testing principles and was testing in gradle using Junit for the business logic and Fluentinum for the integration tests.
+This site uses thr concepts of RESTful routing to set up Dictionary web application. It uses two classes/units: Word and Definition in a one to many relationship. The user can add as many words ad possible and add as many definitions as possible to each word. The code was designed using BDD testing principles. The units were automatically build in gradle, tested independently using jUnit and the integration/Selenium tests were done Fluentinum.
 
-Setup/Installation Requirements First clone this repository
+Setup/Installation Requirements :
 
-Known Bugs
+First clone this repository
+Install auto-build and test application such as Gradle
+Build in the terminal using 'gradle run' command
+Open localhost:4567 in any browser to use the web application
+
+Known Bugs:
 
 None
 
-Support and contact details
+Support and contact details:
 
 lpr422@gmail.com
 
-Technologies Used
+Technologies Used:
 
-HTML, CSS, Java, Fluentinum, Gradle, BDD Testing
+HTML, CSS, Object Oriented Java, Fluentinum/Selenium, Gradle, BDD Testing, jUnit, Apache Spark, Apache Velocity
 
 License
 
