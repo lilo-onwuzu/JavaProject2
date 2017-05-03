@@ -18,6 +18,7 @@
 	The unit testing of the backend is done using jUnit. 
 	The integration testing of the user interface was done using Selenium Webdriver tests and a FluentLenium Adapter. 
 	All testing dependencies were managed using Gradle.
+	No database backing.
 
 #### _Setup/Installation Requirements_	 
  	Clone this repository
@@ -25,7 +26,6 @@
 	Build in the terminal using 'gradle run' command
 	Open localhost:4567 in any browser to use the web application
 	Start adding words to the dictionary
-	No database backing
 	
 #### _Known Bugs_
  	None
