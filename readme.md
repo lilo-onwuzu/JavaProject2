@@ -25,7 +25,8 @@
 	Build in the terminal using 'gradle run' command
 	Open localhost:4567 in any browser to use the web application
 	Start adding words to the dictionary
-
+	No database backing
+	
 #### _Known Bugs_
  	None
 
@@ -33,9 +34,9 @@
 	lpr422@gmail.com
 	
 #### _Technologies Used_
-	HTML, CSS, Object Oriented Java, One to Many Relationship Databases, SQL on POSTGREs DB, 
+	HTML, CSS, Object Oriented Java, One to Many Relationship Databases, RESTful routing
 	Selenium Web Driver- UI Testing, Fluentinum Adapter, Gradle, BDD Testing, Gradle Dependency Manager 
-	jUnit backend testing, Spark Framework, Velocity Templates, Velocity Template Engine, RESTful routing,
+	jUnit backend testing, Spark Framework, Velocity Templates, Velocity Template Engine
  
 
 #### _License_
