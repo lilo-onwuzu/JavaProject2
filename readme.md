@@ -19,8 +19,7 @@
 	The integration testing of the user interface was done using Selenium Webdriver tests and a FluentLenium Adapter. 
 	All testing dependencies were managed using Gradle.
 
-#### _Setup/Installation Requirements_
-	 
+#### _Setup/Installation Requirements_	 
  	Clone this repository
 	Install Gradle (a build & test automation program that will manage all our dependencies)
 	Build in the terminal using 'gradle run' command
